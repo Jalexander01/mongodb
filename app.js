@@ -13,6 +13,65 @@ const mongoose = require ('mongoose');
 //connect db
 mongoose.connect("mongodb://localhost:27017/fruitsDB", { useNewUrlParser: true });
 
+const fruitSchema = new mongoose.Schema({
+  name: String,
+  rating: Number,
+  review: String
+});
+const Fruit = mongoose.model("Fruit",fruitSchema);
+
+const fruit = new Fruit({
+  name: "Apple",
+  rating: 7,
+  review: "Pretty okay"
+});
+
+const kiwi = new Fruit({
+  name: "kiwi",
+  rating: 8,
+  review: "Pretty okay"
+});
+
+const banana = new Fruit({
+  name: "banana",
+  rating: 9,
+  review: "Pretty okay"
+});
+
+const organge = new Fruit({
+  name: "organge",
+  rating: 7,
+  review: "Pretty okay"
+});
+
+Fruit.insertMany([kiwi, banana, organge], function(err){
+if (err){
+  console.log(err);
+}else{
+  console.log("Success!");
+}
+
+});
+
+
+
+const personSchema = new mongoose.Schema({
+  name: String,
+  lastname: String,
+  rating: Number,
+  review: String
+});
+const Person = mongoose.model("Person",personSchema);
+
+const person = new Person({
+  name: "Jonh",
+  lastname: "Doe",
+  rating: 7,
+  review: "Pretty okay"
+});
+
+person.save();
+
 
 
 //get function will send information to the brower at loading
