@@ -11,7 +11,7 @@ app.use(express.static("public"));//use static files like style.css and js
 const mongoose = require ('mongoose');
 
 //connect db
-mongoose.connect("mongodb://localhost:27017/fruitsDB", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost:27017/fruits2DB", { useNewUrlParser: true });
 
 
 
