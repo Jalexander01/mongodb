@@ -7,6 +7,13 @@ app.use(bodyParser.urlencoded({extended:true}));//use body-parser to grab the da
 app.set('view engine', 'ejs');//to use ejs with express
 app.use(express.static("public"));//use static files like style.css and js
 
+//require mongoose
+const mongoose = require ('mongoose');
+
+//connect db
+mongoose.connect("mongodb://localhost:27017/fruitsDB");
+
+
 
 //get function will send information to the brower at loading
 app.get("/", function(req, res){
