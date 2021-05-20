@@ -23,7 +23,7 @@ app.get("/", function(req, res){
   // res.send(__dirname);
 
 //ejs
-res.render('index');
+res.render('home');
 })
 
 //post function will receive information from the browser to the server
