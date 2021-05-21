@@ -14,11 +14,13 @@ const mongoose = require ('mongoose');
 mongoose.connect("mongodb://localhost:27017/fruitsDB", { useNewUrlParser: true });
 
 const fruitSchema = new mongoose.Schema({
-  name: String,
+  name: { type: String, required: true },
   rating: Number,
   review: String
 });
 const Fruit = mongoose.model("Fruit",fruitSchema);
+
+
 
 const fruit = new Fruit({
   name: "Apple",
@@ -44,13 +46,13 @@ const organge = new Fruit({
   review: "Pretty okay"
 });
 
-Fruit.insertMany([kiwi, banana, organge], function(err){
-if (err){
-  console.log(err);
-}else{
-  console.log("Success!");
-}
-});
+// Fruit.insertMany([kiwi, banana, organge], function(err){
+// if (err){
+//   console.log(err);
+// }else{
+//   console.log("Success!");
+// }
+// });
 
 
 
@@ -69,9 +71,21 @@ const person = new Person({
   review: "Pretty okay"
 });
 
-person.save();
+// person.save();
+
+Fruit.find(function(err, fruits){
+if(err){
+  console.log(err);
 
 
+}else{
+  mongoose.connection.close();
+  fruits.forEach(function(fruit){
+    console.log(fruit.name);
+    console.log(fruit.review);
+  })
+}
+})
 
 //get function will send information to the brower at loading
 app.get("/", function(req, res){
