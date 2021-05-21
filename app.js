@@ -14,7 +14,7 @@ const mongoose = require ('mongoose');
 mongoose.connect("mongodb://localhost:27017/fruitsDB", { useNewUrlParser: true });
 
 const fruitSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  name: String,
   rating: Number,
   review: String
 });
@@ -57,7 +57,7 @@ const organge = new Fruit({
 
 
 const personSchema = new mongoose.Schema({
-  name: String,
+  name: { type: String, required: true },
   lastname: String,
   rating: Number,
   review: String
