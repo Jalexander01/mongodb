@@ -57,7 +57,7 @@ const organge = new Fruit({
 
 
 const personSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  name: { type: String, required: [true, 'Why no bacon?'] },
   lastname: String,
   rating: Number,
   review: String
@@ -65,13 +65,13 @@ const personSchema = new mongoose.Schema({
 const Person = mongoose.model("Person",personSchema);
 
 const person = new Person({
-  name: "Jonh",
+  name: "",
   lastname: "Doe",
   rating: 7,
   review: "Pretty okay"
 });
 
-// person.save();
+person.save();
 
 Fruit.find(function(err, fruits){
 if(err){
@@ -79,14 +79,29 @@ if(err){
 
 
 }else{
-  mongoose.connection.close();
   fruits.forEach(function(fruit){
     console.log(fruit.name);
-    console.log(fruit.review);
+    console.log(fruit.id);
   })
 }
 })
+ // Fruit.updateOne({_id:"60a66ccd0c9ddb59609f732a"}, {name:"Maranon"}, function(err){
+ //   if(err){
+ //     console.log(err);
+ //   }else{
+ //     console.log("Successfully updated");
+ //   }
+ //
+ // });
 
+Fruit.deleteOne({_id:"60a66ccd0c9ddb59609f732a"}, {name:"Maranon"}, function(err){
+  if(err){
+    console.log(err);
+  }else{
+    console.log("Successfully deleted");
+  }
+
+});
 //get function will send information to the brower at loading
 app.get("/", function(req, res){
   // console.log(req);
